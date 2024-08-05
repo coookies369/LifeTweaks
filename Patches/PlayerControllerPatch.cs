@@ -12,4 +12,11 @@ public class PlayerControllerPatch
     {
         live = Math.Min(live, Config.lifeCap.Value - __instance.GetLifes());
     }
+
+    [HarmonyPatch("ResetLifes")]
+    [HarmonyPrefix]
+    private static void SetStartingLives(ref int startLifesCount)
+    {
+        startLifesCount = Config.startLifeCount.Value;
+    }
 }
